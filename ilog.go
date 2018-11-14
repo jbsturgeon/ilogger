@@ -174,7 +174,7 @@ func (i *ILog) NewFile(p string, d, l int) error {
 	}
 
 	//setup golang log variable; we could default to os.Stderr or os.Stdout???
-	i.iLog = log.New(i.logFile, "", log.LstdFlags|log.Lshortfile)
+	i.iLog = log.New(i.logFile, "", log.LstdFlags|log.Lmicroseconds|log.LUTC)
 
 	i.logOpen = true
 	i.fileDay = t.Day()
