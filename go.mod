@@ -1,4 +1,4 @@
-module github.com/Novetta/ilogger
+module github.com/jbsturgeon/ilogger
 
 go 1.16
 
