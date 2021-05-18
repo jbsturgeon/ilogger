@@ -9,7 +9,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/fatih/color"
 	yaml "gopkg.in/yaml.v2"
 )
 
@@ -220,7 +219,7 @@ func (i *ILog) Log(level LogLevel, formattedString string, params ...interface{}
 	}
 
 	// log message
-	i.iLog.Output(3, i.paintString(fmt.Sprintf(formattedString, params...), colorMap[level]))
+	i.iLog.Output(3, fmt.Sprintf(formattedString, params...))
 }
 
 // Fatalf is equivalent to calling Errorf followed by os.Exit(1)
@@ -264,29 +263,4 @@ func (i *ILog) Info(formattedString string, params ...interface{}) {
 // Debug log
 func (i *ILog) Debug(formattedString string, params ...interface{}) {
 	i.Log(LDebug, debugPrefix+formattedString, params...)
-}
-
-func (i *ILog) paintString(str string, colorEnum int) string {
-	if showColors {
-		return str
-	}
-
-	switch colorEnum {
-	case whiteEnum:
-		str = color.WhiteString(str)
-	case blueEnum:
-		str = color.BlueString(str)
-	case cyanEnum:
-		str = color.CyanString(str)
-	case greenEnum:
-		str = color.GreenString(str)
-	case yellowEnum:
-		str = color.YellowString(str)
-	case redEnum:
-		str = color.RedString(str)
-	case magentaEnum:
-		str = color.MagentaString(str)
-	}
-
-	return str
 }
